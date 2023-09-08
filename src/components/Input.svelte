@@ -1,12 +1,27 @@
-<svelte:options customElement="awc-input" />
+<svelte:options
+  customElement={{
+    tag: 'awc-input',
+    props: {
+      color: { reflect: true, type: 'String', attribute: 'color-input' },
+    },
+  }}
+/>
+
 <script>
-    export let input_name, input_id;
-    export let input_placeholder = 'Введите название';
-    export let input_color;
+  export let input_name;
+  export let input_id;
+  export let placeholder = 'Введите название';
+  export let color = 'default'; 
 </script>
 
 <div>
-  <input class="awc-input {input_color}" type="text" name={input_name} id={input_id}  placeholder={input_placeholder} />
+  <input
+    class="awc-input {color}"
+    type="text"
+    name={input_name}
+    id={input_id}
+    placeholder={placeholder}
+  />
 </div>
 
 <style>
@@ -17,15 +32,22 @@
     color: var(--secondary-text);
     background: var(--input-background);
   }
+
   .awc-input:focus-visible {
     outline: 1px solid var(--secondary-text);
   }
-  .red {
+
+  .awc-input.default {
+    background: var(--input-background);
+    color: var(--secondary-text);
+  }
+
+  .awc-input.red {
     background: red;
     color: white;
   }
 
-  .purple {
+  .awc-input.purple {
     background: purple;
     color: white;
   }
